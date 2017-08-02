@@ -15,6 +15,7 @@ var clock = new THREE.Clock();
 var firstControls;
 var time;
 var i, materials = [], geometry, parameters;
+var obj;
 
 function init() {
   // set up the scene, the camera and the renderer
@@ -63,6 +64,16 @@ function createScene() {
   camera.position.z = 200;
   camera.position.y = 100;
   // camera.rotation.y = Math.PI *2 ;
+
+  obj = new THREE.Mesh(new THREE.BoxGeometry(15, 20, 60, 60, 60, 60),
+    new THREE.MeshBasicMaterial({color: 0xfdb7fa}));
+
+  obj.position.x = 0;
+  obj.position.y = -150;
+  obj.position.z = 0;
+
+  camera.add(obj);
+  scene.add(camera);
 
   // Create the renderer
   renderer = new THREE.WebGLRenderer({
@@ -294,6 +305,9 @@ function loop(){
 
   dotSystem.rotation.x += 0.0003;
   dotSystem.rotation.y -= 0.0001;
+
+  obj.rotation.z = 0.06 * Math.sin( i / 2 + (time * 0.4 + i));
+  obj.position.y = -23 + (1.5 * Math.sin( i / 2 + (time * 0.14 + i)));
 
   sea.moveWaves();
 
