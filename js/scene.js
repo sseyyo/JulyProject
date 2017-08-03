@@ -7,7 +7,7 @@ var Colors = {
   brown:0x59332e,
   pink:0xF5986E,
   brownDark:0x23190f,
-  blue:0x122654,
+  blue:0x231c72,
 };
 
 window.addEventListener('load', init, false);
@@ -71,6 +71,22 @@ function createScene() {
   obj.position.x = 0;
   obj.position.y = -150;
   obj.position.z = 0;
+
+
+//////////
+        // var context = obj.getContext( '2d' );
+        // var gradient = obj.createRadialGradient( obj.width / 2, obj.height / 2, 0, obj.width / 2, obj.height / 2, obj.width / 2 );
+        // gradient.addColorStop( 0, 'rgba(255,255,255,1)' );
+        // gradient.addColorStop( 0.2, 'rgba(0,255,20,1)' );
+        // gradient.addColorStop( 0.4, 'rgba(0,60,20,1)' );
+        // gradient.addColorStop( 1, 'rgba(0,0,0,1)' );
+        //
+        // context.fillStyle = gradient;
+        // context.fillRect( 0, 0, canvas.width, canvas.height );
+        //
+        // return obj; //
+//////////
+
 
   camera.add(obj);
   scene.add(camera);
@@ -161,23 +177,25 @@ function createSea(){
   sea.mesh.position.y = 50;
 
   // add the mesh of the sea to the scene
+
   scene.add(sea.mesh);
 }
 
 
 function createMoon(){
-  var geom = new THREE.SphereGeometry(70,32,32);
+  var geom = new THREE.SphereGeometry(30,32,32);
     var mat = new THREE.MeshBasicMaterial({ color: 0xfff954});
 
     var moon = new THREE.Mesh(geom, mat);
     moon.position.x = 0;
-    moon.position.y = 220;
-    moon.position.z = -180;
+    moon.position.y = 120;
+    moon.position.z = -280;
     // Allow the sea to receive shadows
-    var pointLight = new THREE.PointLight( 0xfff954, 2, 600 );
+    var pointLight = new THREE.PointLight( 0xfff954, 2, 8000 );
     moon.add( pointLight );
     moon.receiveShadow = false;
-    scene.add(moon);
+    camera.add(moon);
+    scene.add(camera);
 
   // var dirLight = new THREE.DirectionalLight( 0xffffff, 0.05 );
   // dirLight.position.x = 0;
@@ -236,7 +254,8 @@ function createStars(){
     particles.position.y = Math.random() * 6 + 600;//?????
     particles.rotation.z = Math.random() * 6;
 
-    scene.add( particles );
+    camera.add(particles)
+    scene.add( camera );
 
   }
 }
@@ -265,7 +284,8 @@ function createFirefly(){
 
 function drawDotSystem() {
   dotSystem = new THREE.Group();
-  scene.add(dotSystem);
+  camera.add(dotSystem);
+  scene.add(camera);
 
   const system1 = new DotSystem({
     intensity: 300,
@@ -278,7 +298,7 @@ function drawDotSystem() {
 
   const system2 = new DotSystem({
     intensity: 100,
-    color: 0xFF007B,
+    color: 0xed0096,
     xSpread: 300,
     ySpread: 500,
     zSpread: 400,
