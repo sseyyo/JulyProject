@@ -64,14 +64,21 @@ function createScene() {
   camera.position.z = 200;
   camera.position.y = 100;
   // camera.rotation.y = Math.PI *2 ;
+  var loader = new THREE.OBJLoader();
 
-  obj = new THREE.Mesh(new THREE.BoxGeometry(15, 20, 60, 60, 60, 60),
-    new THREE.MeshBasicMaterial({color: 0xfdb7fa}));
+  loader.load('obj/boat.obj', function(object) {
+  // console.log(obj);
 
-  obj.position.x = 0;
-  obj.position.y = -150;
-  obj.position.z = 0;
+  // obj = new THREE.Mesh(new THREE.BoxGeometry(15, 20, 60, 60, 60, 60),
+  //   new THREE.MeshBasicMaterial({color: 0xfdb7fa}));
 
+  object.position.x = 0;
+  object.position.y = -150;
+  object.position.z = 0;
+
+  camera.add(object);
+  scene.add(camera);
+});
 
 //////////
         // var context = obj.getContext( '2d' );
@@ -88,8 +95,6 @@ function createScene() {
 //////////
 
 
-  camera.add(obj);
-  scene.add(camera);
 
   // Create the renderer
   renderer = new THREE.WebGLRenderer({
