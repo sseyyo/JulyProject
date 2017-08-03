@@ -73,7 +73,7 @@ function createScene() {
   //   new THREE.MeshBasicMaterial({color: 0xfdb7fa}));
 
   object.position.x = 0;
-  object.position.y = -150;
+  object.position.y = -5;
   object.position.z = 0;
 
   camera.add(object);
@@ -331,8 +331,8 @@ function loop(){
   dotSystem.rotation.x += 0.0003;
   dotSystem.rotation.y -= 0.0001;
 
-  obj.rotation.z = 0.06 * Math.sin( i / 2 + (time * 0.4 + i));
-  obj.position.y = -23 + (1.5 * Math.sin( i / 2 + (time * 0.14 + i)));
+  // obj.rotation.z = 0.06 * Math.sin( i / 2 + (time * 0.4 + i));
+  // obj.position.y = -23 + (1.5 * Math.sin( i / 2 + (time * 0.14 + i)));
 
   sea.moveWaves();
 
